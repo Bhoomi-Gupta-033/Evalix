@@ -1,0 +1,51 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: all;
+}
+
+/* Add cursor pointer to buttons by default - this is coming from tailwind docs */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* 🌌 GLOBAL THEME */
+:root {
+  --color-bg: #0f172a;
+  --color-primary: #6366f1;   /* Indigo */
+  --color-secondary: #8b5cf6; /* Purple */
+  --color-accent: #3b82f6;    /* Blue */
+  --color-text: #ffffff;
+}
+
+body {
+  background: linear-gradient(
+    to bottom right,
+    #0f172a,
+    #1e1b4b,
+    #312e81
+  );
+  color: var(--color-text);
+}
+
+.btn {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  color: white;
+  border: none;
+}
+
+.card {
+  background-color: #0f172a;
+  border: 1px solid #8b5cf6;
+  border-radius: 12px;
+}
+
+[data-theme="evalix"] {
+  --p: 250 95% 65%;   /* primary */
+  --s: 230 90% 60%;   /* secondary */
+  --a: 260 90% 70%;   /* accent */
+  --b1: 222 47% 11%;  /* background */
+  --bc: 0 0% 100%;    /* text */
+}
