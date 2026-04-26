@@ -29,6 +29,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
+      "https://evalix-bhgd4snkm-bhoomi-guptas-projects-4164b663.vercel.app",
       "http://localhost:5173",
       "http://localhost:5174",
       process.env.CLIENT_URL,
