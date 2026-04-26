@@ -20,9 +20,19 @@ app.use(express.json());
 // credentials:true meaning?? => server allows a browser to include cookies on request
 // app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 
+// app.use(
+//   cors({
+//     origin: process.env.CLIENT_URL,
+//     credentials: true,
+//   }),
+// );
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      process.env.CLIENT_URL,
+    ],
     credentials: true,
   }),
 );
@@ -46,11 +56,12 @@ app.get("/health", (req, res) => {
 // }
 
 const startServer = async () => {
+  const PORT = process.env.PORT || 5000;
   try {
     await connectDB();
-    app.listen(ENV.PORT, () =>
-      console.log("Server is running on port:", ENV.PORT),
-    );
+    app.listen(PORT, () => {
+      console.log("Server is running on port:", PORT);
+    });
   } catch (error) {
     console.error("💥 Error starting the server", error);
   }
