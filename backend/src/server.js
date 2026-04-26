@@ -22,7 +22,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"],
+    origin: process.env.CLIENT_URL,
     credentials: true,
   }),
 );
@@ -37,13 +37,13 @@ app.get("/health", (req, res) => {
 });
 
 // make our app ready for deployment
-if (ENV.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+// if (ENV.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-  app.get("/{*any}", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
-  });
-}
+//   app.get("/{*any}", (req, res) => {
+//     res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+//   });
+// }
 
 const startServer = async () => {
   try {
